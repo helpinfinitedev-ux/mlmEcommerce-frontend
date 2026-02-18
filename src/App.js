@@ -474,11 +474,6 @@
 //   );
 // }
 
-// export default App;
-
-
-
-
 import React, { useState, useEffect, createContext } from "react";
 import {
   BrowserRouter as Router,
@@ -486,7 +481,6 @@ import {
   Route,
   Navigate,
   useNavigate,
-  NavLink,
 } from "react-router-dom";
 
 import "./App.css";
@@ -507,21 +501,13 @@ import Orders from "./components/ecommerce/Orders";
 import Wallet from "./components/dashboard/Wallet";
 import ForgotPassword from "./pages/ForgotPassword";
 
-import { CartProvider } from "./components/ecommerce/CartContext";
+import { CartProvider, useCart } from "./components/ecommerce/CartContext";
 import Header from "./components/shared/Header";
 import Footer from "./components/shared/Footer";
 
 export const ActiveUserContext = createContext();
 
-const navLinks = [
-  { to: "", label: "Home" },
-  { to: "shop", label: "Shop" },
-  { to: "about", label: "About" },
-  { to: "contact", label: "Contact" },
-  { to: "cart", label: "Cart" },
-  { to: "orders", label: "Orders" },
-  { to: "wallet", label: "Wallet" },
-];
+// navLinks removed as they were not used in the render
 
 
 // ✅ User App Layout
@@ -559,6 +545,8 @@ const UserApp = ({ activeUser, onSwitchUser }) => (
 // ✅ Main App Wrapper
 function AppWrapper() {
   const navigate = useNavigate();
+  const { cart } = useCart();
+  const location = useLocation();
   const [authData, setAuthData] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeUser, setActiveUser] = useState(null);
@@ -652,7 +640,7 @@ function AppWrapper() {
     };
     setActiveUser(userInfo);
     localStorage.setItem("activeUser", JSON.stringify(userInfo));
-    navigate(`/user/${userId}`);
+    navigate(`/ user / ${userId} `);
   };
 
   return (

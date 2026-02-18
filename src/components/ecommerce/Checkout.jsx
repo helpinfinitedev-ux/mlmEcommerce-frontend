@@ -36,7 +36,7 @@
 //   const tax = subtotal * 0.08;
 //   const total = subtotal + shipping + tax;
 //   const totalMlmPoints = cart.reduce((sum, item) => sum + (item.mlmPoints || 0), 0);
-  
+
 //   const handleInputChange = (e) => {
 //     const { id, value } = e.target;
 //     setFormData(prev => ({
@@ -54,7 +54,7 @@
 //         orderAPI.updateOrderStatus(orderId, { paymentStatus: 'Done' })
 //           .catch(err => console.error('Error updating payment status:', err));
 //       }, 5000); // Simulate payment processing after 5 seconds
-      
+
 //       return () => clearTimeout(timer);
 //     }
 //   }, [orderId, paymentStatus]);
@@ -62,7 +62,7 @@
 //   const handlePlaceOrder = async () => {
 //     try {
 //       setIsSubmitting(true);
-      
+
 //       // Validate shipping address
 //       if (!formData.firstName || !formData.lastName || !formData.address || !formData.city || 
 //           !formData.zipCode || !formData.phone) {
@@ -70,14 +70,14 @@
 //         setIsSubmitting(false);
 //         return;
 //       }
-      
+
 //       // Validate payment method
 //       if (paymentMethod === 'upi' && !upiId) {
 //         alert('Please enter your UPI ID');
 //         setIsSubmitting(false);
 //         return;
 //       }
-      
+
 //       // Create order object
 //       const orderData = {
 //         userId,
@@ -102,11 +102,11 @@
 //         shipping,
 //         mlmPointsEarned: totalMlmPoints
 //       };
-      
+
 //       // Send order to backend
 //       const response = await orderAPI.createOrder(orderData);
 //       setOrderId(response.id || response._id);
-      
+
 //       // Clear cart and show success
 //       clearCart();
 //       setOrderPlaced(true);
@@ -127,7 +127,7 @@
 //           <p className="text-gray-600 mb-6">
 //             Your order has been placed and is being processed. You'll receive a confirmation email shortly.
 //           </p>
-          
+
 //           {/* Payment Status */}
 //           <div className={`mb-6 p-4 rounded-lg ${paymentStatus === 'Done' ? 'bg-green-50 border border-green-200' : 'bg-yellow-50 border border-yellow-200'}`}>
 //             <div className="flex items-center justify-center mb-2">
@@ -149,7 +149,7 @@
 //                 : 'Your payment is being processed. Please wait...'}
 //             </p>
 //           </div>
-          
+
 //           {totalMlmPoints > 0 && (
 //             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
 //               <h3 className="font-medium text-blue-800 mb-1">MLM Points Earned</h3>
@@ -264,7 +264,7 @@
 //                   />
 //                 </div>
 //               </div>
-              
+
 //               <div className="grid grid-cols-2 gap-4">
 //                 <div>
 //                   <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700">
@@ -470,9 +470,8 @@ import { orderAPI } from '../../services/api';
 
 const Checkout = () => {
   const { userId } = useParams();
-  const navigate = useNavigate();
   const { cart, clearCart } = useCart();
-  
+
   // State management
   const [paymentMethod, setPaymentMethod] = useState('qr');
   const [orderPlaced, setOrderPlaced] = useState(false);
@@ -481,7 +480,7 @@ const Checkout = () => {
   const [orderId, setOrderId] = useState(null);
   const [paymentStatus, setPaymentStatus] = useState('Pending');
   const [error, setError] = useState(null);
-  
+
   // Form data
   const [formData, setFormData] = useState({
     firstName: '',
@@ -518,7 +517,7 @@ const Checkout = () => {
         orderAPI.updateOrderStatus(orderId, { paymentStatus: 'Done' })
           .catch(err => console.error('Error updating payment status:', err));
       }, 5000);
-      
+
       return () => clearTimeout(timer);
     }
   }, [orderId, paymentStatus]);
@@ -528,17 +527,17 @@ const Checkout = () => {
     try {
       setIsSubmitting(true);
       setError(null);
-      
+
       // Validate form
-      if (!formData.firstName || !formData.lastName || !formData.address || 
-          !formData.city || !formData.zipCode || !formData.phone || !formData.email) {
+      if (!formData.firstName || !formData.lastName || !formData.address ||
+        !formData.city || !formData.zipCode || !formData.phone || !formData.email) {
         throw new Error('Please fill in all required fields');
       }
-      
+
       if (paymentMethod === 'upi' && !upiId) {
         throw new Error('Please enter your UPI ID');
       }
-      
+
       // Create order object
       const orderData = {
         userId,
@@ -566,15 +565,15 @@ const Checkout = () => {
         mlmPointsEarned: totalMlmPoints,
         createdAt: new Date().toISOString()
       };
-      
+
       // Submit order
       const response = await orderAPI.createOrder(orderData);
       setOrderId(response.id || response._id);
-      
+
       // Clear cart and show success
       clearCart();
       setOrderPlaced(true);
-      
+
     } catch (error) {
       console.error('Error placing order:', error);
       setError(error.message || 'There was an error placing your order. Please try again.');
@@ -596,7 +595,7 @@ const Checkout = () => {
             <p className="mt-2 text-sm text-gray-500">
               Your order #{orderId} has been confirmed. We've sent a confirmation email to {formData.email}.
             </p>
-            
+
             {/* Payment Status */}
             <div className={`mt-6 p-4 rounded-md ${paymentStatus === 'Done' ? 'bg-green-50' : 'bg-yellow-50'}`}>
               <div className="flex items-center justify-center">
@@ -612,7 +611,7 @@ const Checkout = () => {
                 </span>
               </div>
             </div>
-            
+
             {/* MLM Points */}
             {totalMlmPoints > 0 && (
               <div className="mt-4 bg-blue-50 p-4 rounded-md">
@@ -623,7 +622,7 @@ const Checkout = () => {
                 </p>
               </div>
             )}
-            
+
             {/* Action Buttons */}
             <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Link
@@ -672,8 +671,8 @@ const Checkout = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
       <div className="flex items-center mb-6">
-        <Link 
-          to={`/user/${userId}/cart`} 
+        <Link
+          to={`/user/${userId}/cart`}
           className="flex items-center text-blue-600 hover:text-blue-800"
         >
           <ArrowLeftIcon className="h-5 w-5 mr-1" />

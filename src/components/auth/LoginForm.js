@@ -570,7 +570,7 @@ const LoginForm = ({ onLoginSuccess, onSwitchToSignup }) => {
       .required('User ID is required'),
     password: Yup.string().required('Password is required'),
     parentMobile: Yup.string()
-      .matches(/^\+?[\d\s\-\(\)]{10,15}$/, 'Please enter a valid mobile number')
+      .matches(/^\+?[\d\s\-()]{10,15}$/, 'Please enter a valid mobile number')
       .required('Mobile number is required'),
   });
 
@@ -641,8 +641,8 @@ const LoginForm = ({ onLoginSuccess, onSwitchToSignup }) => {
               <li key={id} className="text-lg text-center py-1">{id}</li>
             ))}
           </ul>
-          <button 
-            onClick={() => setShowDashboard(false)} 
+          <button
+            onClick={() => setShowDashboard(false)}
             className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md"
           >
             Login as another user

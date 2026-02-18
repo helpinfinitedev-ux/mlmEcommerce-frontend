@@ -2,12 +2,10 @@ import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
   MagnifyingGlassIcon,
-  HeartIcon,
   ShoppingBagIcon,
   Bars3Icon,
   XMarkIcon,
   UserCircleIcon,
-  BellIcon,
   ArrowRightOnRectangleIcon,
   ArrowsRightLeftIcon
 } from '@heroicons/react/24/outline';
@@ -18,7 +16,6 @@ const Header = ({ activeUser, onSwitchUser }) => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { cart } = useCart();
-  const navigate = useNavigate();
   const location = useLocation();
 
   const cartItemsCount = cart.reduce((count, item) => count + item.quantity, 0);

@@ -22,69 +22,69 @@ const Orders = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Mock data for testing when API fails
-  const mockOrders = [
-    {
-      id: 'ORD001',
-      userId: userId,
-      status: 'processing',
-      paymentStatus: 'Pending',
-      date: new Date().toISOString(),
-      total: 299.99,
-      items: [
-        {
-          name: 'Premium MLM Package',
-          price: 299.99,
-          quantity: 1,
-          mlmPoints: 100
-        }
-      ],
-      payment: {
-        method: 'qr'
-      },
-      mlmPointsEarned: 100,
-      shipping: {
-        firstName: 'John',
-        lastName: 'Doe',
-        address: '123 Main St',
-        city: 'New York',
-        state: 'NY',
-        zipCode: '10001'
-      }
-    },
-    {
-      id: 'ORD002',
-      userId: userId,
-      status: 'delivered',
-      paymentStatus: 'Done',
-      date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-      total: 149.99,
-      items: [
-        {
-          name: 'Basic Product',
-          price: 149.99,
-          quantity: 1,
-          mlmPoints: 50
-        }
-      ],
-      payment: {
-        method: 'upi',
-        upiId: 'john@upi'
-      },
-      mlmPointsEarned: 50,
-      shipping: {
-        firstName: 'John',
-        lastName: 'Doe',
-        address: '123 Main St',
-        city: 'New York',
-        state: 'NY',
-        zipCode: '10001'
-      }
-    }
-  ];
-
   useEffect(() => {
     const fetchOrders = async () => {
+      // Mock data for testing when API fails
+      const mockOrdersList = [
+        {
+          id: 'ORD001',
+          userId: userId,
+          status: 'processing',
+          paymentStatus: 'Pending',
+          date: new Date().toISOString(),
+          total: 299.99,
+          items: [
+            {
+              name: 'Premium MLM Package',
+              price: 299.99,
+              quantity: 1,
+              mlmPoints: 100
+            }
+          ],
+          payment: {
+            method: 'qr'
+          },
+          mlmPointsEarned: 100,
+          shipping: {
+            firstName: 'John',
+            lastName: 'Doe',
+            address: '123 Main St',
+            city: 'New York',
+            state: 'NY',
+            zipCode: '10001'
+          }
+        },
+        {
+          id: 'ORD002',
+          userId: userId,
+          status: 'delivered',
+          paymentStatus: 'Done',
+          date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+          total: 149.99,
+          items: [
+            {
+              name: 'Basic Product',
+              price: 149.99,
+              quantity: 1,
+              mlmPoints: 50
+            }
+          ],
+          payment: {
+            method: 'upi',
+            upiId: 'john@upi'
+          },
+          mlmPointsEarned: 50,
+          shipping: {
+            firstName: 'John',
+            lastName: 'Doe',
+            address: '123 Main St',
+            city: 'New York',
+            state: 'NY',
+            zipCode: '10001'
+          }
+        }
+      ];
+
       try {
         setLoading(true);
         setError(null);
@@ -101,12 +101,12 @@ const Orders = () => {
           setOrders(response);
         } else {
           console.log('Using mock orders due to invalid API response');
-          setOrders(mockOrders);
+          setOrders(mockOrdersList);
         }
       } catch (err) {
         console.error('Error fetching orders:', err);
         console.log('Using mock orders due to API error');
-        setOrders(mockOrders);
+        setOrders(mockOrdersList);
         setError('Using demo data - API connection failed');
       } finally {
         setLoading(false);

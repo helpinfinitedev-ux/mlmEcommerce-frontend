@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { authAPI } from '../../services/api';
-import { useNavigate } from 'react-router-dom'; // ✅ Import useNavigate
-
 const UserDashboard = ({ userData, onLogout, onDataUpdate, onUserIdSelect }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [showCreateForm, setShowCreateForm] = useState(false);
-
-  const navigate = useNavigate(); // ✅ Initialize
 
   const validationSchema = Yup.object({
     name: Yup.string()

@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
 import {
-  ArrowRightIcon,
   ChartBarIcon,
   UsersIcon,
   ShoppingBagIcon,
@@ -119,19 +118,19 @@ const Home = () => {
             </p>
             <div className="flex flex-wrap gap-5">
               <Link
-                to={userId ? `/user/${userId}/shop` : "/shop"}
+                to={userId ? `/ user / ${userId} /shop` : "/shop"}
                 className="btn btn-primary btn-lg px-10 py-4 text-lg shadow-xl shadow-primary-500/20 hover:-translate-y-1 transition-all"
               >
                 Explore Products
-                <ShoppingBagIcon className="ml-3 h-5 w-5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+                < ShoppingBagIcon className="ml-3 h-5 w-5" />
+              </Link >
+            </div >
+          </div >
+        </div >
+      </section >
 
       {/* Stats Section with Glassmorphism */}
-      <section className="relative z-20 -mt-10 mb-20 px-4">
+      < section className="relative z-20 -mt-10 mb-20 px-4" >
         <div className="max-w-6xl mx-auto bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 p-8 lg:p-12">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -146,10 +145,10 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Features Section */}
-      <section className="py-24 bg-secondary-50">
+      < section className="py-24 bg-secondary-50" >
         <div className="container-responsive">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-extrabold text-secondary-900 mb-6">
@@ -178,10 +177,10 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Benefits Section - Refined */}
-      <section className="py-24 bg-white">
+      < section className="py-24 bg-white" >
         <div className="container-responsive">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="relative">
@@ -244,10 +243,10 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Testimonials Section */}
-      <section className="py-24 bg-secondary-900 text-white">
+      < section className="py-24 bg-secondary-900 text-white" >
         <div className="container-responsive">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-black mb-6">
@@ -280,8 +279,8 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
-    </div>
+      </section >
+    </div >
   );
 };
 
